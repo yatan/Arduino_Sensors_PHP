@@ -1,11 +1,75 @@
 <?php 
 
-// This is just an example of reading server side data and sending it to the client.
-// It reads a json formatted text file and outputs it.
+// {
+  // "cols": [
+        // {"id":"","label":"Any","pattern":"","type":"string"},
+        // {"id":"","label":"Temperatura","pattern":"","type":"number"}
+      // ],
+  // "rows": [
+        // {"c":[{"v":"23/12/1957","f":null},{"v":24,"f":null}]},
+        // {"c":[{"v":"23/12/1957","f":null},{"v":21,"f":null}]},
+        // {"c":[{"v":"23/12/1957","f":null},{"v":21,"f":null}]},
+        // {"c":[{"v":"23/12/1957","f":null},{"v":22,"f":null}]},
+        // {"c":[{"v":"23/12/1957","f":null},{"v":20,"f":null}]}
+      // ]
+// }
 
-$string = file_get_contents("sampleData.json");
-echo $string;
+	include("connect.php");
+	
+	$mysqli = new mysqli($server, $user, $pass, $db);
+	
+	if ($mysqli->connect_errno) 
+	{
+		echo "Error: Fallo al conectarse a MySQL debido a: \n";
+		echo "Errno: " . $mysqli->connect_errno . "\n";
+		echo "Error: " . $mysqli->connect_error . "\n";
+		exit;
+	}
+	
+	$myObj = (object)array();
 
-// Instead you can query your database and parse into JSON etc etc
+	$myObj->cols = array(
+		array("id" => "", "label" => "Any", "pattern" => "", "type" => "string"),
+		array("id" => "", "label" => "Temperatura", "pattern" => "", "type" => "number")
+	);
+	$myObj->rows = array();
+	
+	
+	$sql = "SELECT data, temp FROM temp_data";
+	$result = $mysqli->query($sql);
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			
+			$temp = array("c" => array(
+				array("v" => $row["data"], "f" => null),
+				array("v" => $row["temp"], "f" => null)
+				)
+			);
+			array_push($myObj->rows, $temp);
+			
+		}
+	} else {
+		echo "0 results";
+	}
+	$mysqli->close();
+
+	// Model JSON Data
+	// $temp = array("c" => array(
+				// array("v" => "2018-01-01", "f" => null),
+				// array("v" => 22, "f" => null)
+				// )
+			// );
+			
+	// array_push($myObj->rows, $temp);
+	// array_push($myObj->rows, $temp);
+	// array_push($myObj->rows, $temp);
+
+
+
+	$myJSON = json_encode($myObj);
+
+	echo $myJSON;
 
 ?>
