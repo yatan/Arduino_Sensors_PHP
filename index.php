@@ -1,5 +1,17 @@
-<title>Sensors</title>
-<a href="view.html">VISITA DADES</a><br><br>
+<!doctype html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<META NAME="author" CONTENT="Fran Romero https://github.com/yatan">
+	<META NAME="keywords" CONTENT="arduino, sensors, spirulina">
+	<META NAME="description" CONTENT="Get data, process and visualize arduino sensors">
+	<title>Sensors</title>
+	<link rel="stylesheet" href="estil.css">
+</head>
+
+<a id="boto1" class="button" href="seleccio.html">Selecció Dades</a>
+<a id="boto2" class="button" href="view.html">Vista Gràfica</a><br><br>
 
 <?php
 	include("connect.php");
