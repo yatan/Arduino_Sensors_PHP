@@ -12,7 +12,7 @@
     <script src="datepicker-es.js"></script>
     <script>
         $(function () {
-            $("#datepicker").datepicker($.datepicker.regional[ "es" ]);
+            $("#datepicker").datepicker($.datepicker.regional["es"]);
         });
     </script>
 </head>
@@ -22,7 +22,25 @@
     <p>Data:
         <input type="text" id="datepicker">
     </p>
+    <p>
+        <input id="buscar" type="button" value="Buscar">
+    </p>
 
+    <div id="resultat"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("#buscar").click(function () {
+                $.post("showmedata.php",
+                    {
+                        data: $("#datepicker").val()
+                    },
+                    function (data, status) {
+                        $("#resultat").html(data);
+                    });
+            });
+        });
+    </script>
 
 </body>
 
