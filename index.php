@@ -27,7 +27,7 @@
 	}
 
 	
-	$sql = "SELECT data, temp FROM temp_data";
+	$sql = "SELECT data, temp FROM temp_data ORDER BY 1 DESC";
 	$result = $mysqli->query($sql);
 
 	if ($result->num_rows > 0) {
