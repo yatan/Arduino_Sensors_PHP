@@ -1,3 +1,6 @@
+<title>Sensors</title>
+<a href="view.html">VISITA DADES</a><br><br>
+
 <?php
 	include("connect.php");
 	
