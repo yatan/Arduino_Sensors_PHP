@@ -35,7 +35,7 @@
 	$myObj->rows = array();
 	
 	
-	$sql = "SELECT * FROM (SELECT data, temp FROM temp_data ORDER BY 1 DESC LIMIT 500) AS a ORDER BY 1 ASC";
+	$sql = "SELECT * FROM (SELECT data, temp FROM temp_data ORDER BY 1 DESC LIMIT 2000) AS a ORDER BY 1 ASC";
 	$result = $mysqli->query($sql);
 
 	if ($result->num_rows > 0) {
