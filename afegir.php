@@ -11,13 +11,47 @@
 		exit;
 	}
 
-	
-	if (isset($_GET['value']) && is_numeric($_GET['value'])) {
-		$valor = $_GET['value'];
+	// Reading ID arduino
+	if (isset($_GET['idarduino']) && is_numeric($_GET['idarduino'])) {
+		$id_arduino = $_GET['idarduino'];
 	} else {
-		$valor = 0;
+		die("Missing ID");
 	}
-	$sql = "INSERT INTO temp1_data(temp) VALUES ('" . $valor . "')"; 
+	// Reading Sensor Temperature 1
+	if (isset($_GET['temp1']) && is_numeric($_GET['temp1'])) {
+		$temp1 = $_GET['temp1'];
+	} else {
+		$temp1 = 0;
+	}
+	// Reading Sensor Temperature 2
+	if (isset($_GET['temp2']) && is_numeric($_GET['temp2'])) {
+		$temp2 = $_GET['temp2'];
+	} else {
+		$temp2 = 0;
+	}
+	// Reading Sensor Temperature 3
+	if (isset($_GET['temp3']) && is_numeric($_GET['temp3'])) {
+		$temp3 = $_GET['temp3'];
+	} else {
+		$temp3 = 0;
+	}
+	// Reading Sensor Temperature 4
+	if (isset($_GET['temp4']) && is_numeric($_GET['temp4'])) {
+		$temp4 = $_GET['temp4'];
+	} else {
+		$temp4 = 0;
+	}
+	// Reading Sensor Temperature 5
+	if (isset($_GET['temp5']) && is_numeric($_GET['temp5'])) {
+		$temp5 = $_GET['temp5'];
+	} else {
+		$temp5 = 0;
+	}
+
+
+
+
+	$sql = "INSERT INTO temp1_data(temp, sensor_id) VALUES ('" . $temp1 . "', '" .$id_arduino. "')"; 
 		
 		
 	if (!$resultado = $mysqli->query($sql)) {
@@ -29,7 +63,7 @@
 	}		
 	else
 	{
-		echo "Valor afegit: " . $valor . "\n";		
+		echo "OK";		
 	}		
 
 
