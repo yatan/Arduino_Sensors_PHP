@@ -21,7 +21,7 @@
     $data1 = date( "Y-m-d", strtotime($data));
     $data2 = date( "Y-m-d", strtotime($data .' +1 day'));
 
-	$sql = "SELECT data, temp FROM temp_data WHERE data BETWEEN '$data1' AND '$data2'";
+	$sql = "SELECT data, temp FROM temp1_data WHERE data BETWEEN '$data1' AND '$data2'";
 	$result = $mysqli->query($sql);
 
 	if ($result->num_rows > 0) {

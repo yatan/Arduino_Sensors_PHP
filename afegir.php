@@ -17,7 +17,7 @@
 	} else {
 		$valor = 0;
 	}
-	$sql = "INSERT INTO temp_data(temp) VALUES ('" . $valor . "')"; 
+	$sql = "INSERT INTO temp1_data(temp) VALUES ('" . $valor . "')"; 
 		
 		
 	if (!$resultado = $mysqli->query($sql)) {
