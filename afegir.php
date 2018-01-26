@@ -52,7 +52,7 @@
 
 	try {
 		// First of all, let's begin a transaction
-		$mysqli->beginTransaction();
+		$mysqli->begin_transaction();
 	
 		// A set of queries; if one fails, an exception should be thrown
 		$mysqli->query("INSERT INTO temp1_data(temp, sensor_id) VALUES ('" . $temp1 . "', '" .$id_arduino. "')");
