@@ -50,7 +50,30 @@
 
 
 
+	try {
+		// First of all, let's begin a transaction
+		$mysqli->beginTransaction();
+	
+		// A set of queries; if one fails, an exception should be thrown
+		$mysqli->query("INSERT INTO temp1_data(temp, sensor_id) VALUES ('" . $temp1 . "', '" .$id_arduino. "')");
+		$mysqli->query("INSERT INTO temp2_data(temp, sensor_id) VALUES ('" . $temp2 . "', '" .$id_arduino. "')");
+		$mysqli->query("INSERT INTO temp3_data(temp, sensor_id) VALUES ('" . $temp3 . "', '" .$id_arduino. "')");
+		$mysqli->query("INSERT INTO temp4_data(temp, sensor_id) VALUES ('" . $temp4 . "', '" .$id_arduino. "')");
+		$mysqli->query("INSERT INTO temp5_data(temp, sensor_id) VALUES ('" . $temp5 . "', '" .$id_arduino. "')");
+	
+		// If we arrive here, it means that no exception was thrown
+		// i.e. no query has failed, and we can commit the transaction
+		$mysqli->commit();
+	} catch (Exception $e) {
+		// An exception has been thrown
+		// We must rollback the transaction
+		$mysqli->rollback();
+		echo "ERROR";
+	}
 
+
+
+/*
 	$sql = "INSERT INTO temp1_data(temp, sensor_id) VALUES ('" . $temp1 . "', '" .$id_arduino. "')"; 
 		
 		
@@ -66,5 +89,7 @@
 		echo "OK";		
 	}		
 
+*/
+	echo "OK";
 
 ?>

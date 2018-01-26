@@ -13,6 +13,8 @@
 <a id="boto1" class="button" href="seleccio.html">Selecció Dades</a>
 <a id="boto2" class="button" href="view.html">Vista Gràfica</a><br><br>
 
+
+
 <?php
 	include("connect.php");
 	
@@ -26,18 +28,29 @@
 		exit;
 	}
 
-	
-	$sql = "SELECT data, temp FROM temp1_data ORDER BY 1 DESC";
-	$result = $mysqli->query($sql);
+	// Reading from Temp1 to Temp5
+	for($i=1;$i<=5;$i++)
+	{
+		echo '<div style="float:left; padding-right:50px;"> Temperatura '.$i.'<br>';
 
-	if ($result->num_rows > 0) {
-		// output data of each row
-		while($row = $result->fetch_assoc()) {
-			echo "Data: " . $row["data"]. " - Temperatura: " . $row["temp"]. "<br>";
+		$sql = "SELECT data, temp, sensor_id FROM temp".$i."_data ORDER BY 1 DESC";
+		$result = $mysqli->query($sql);
+	
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				echo "Data: " . $row["data"]. " - Temperatura: " . $row["temp"]. " - Arduino: ".$row["sensor_id"]."<br>";
+			}
+		} else {
+			echo "0 results";
 		}
-	} else {
-		echo "0 results";
+
+		echo '</div>';
 	}
+	
+
+
+
 	$mysqli->close();
 
 ?>
