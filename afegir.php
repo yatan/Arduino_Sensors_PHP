@@ -47,7 +47,18 @@
 	} else {
 		$temp5 = 0;
 	}
-
+	// Reading Ambient Temperature 1
+	if (isset($_GET['ta1']) && is_numeric($_GET['ta1'])) {
+		$ta1 = $_GET['ta1'];
+	} else {
+		$ta1 = 0;
+	}
+	// Reading Ambient Temperature 2
+	if (isset($_GET['ta2']) && is_numeric($_GET['ta2'])) {
+		$ta2 = $_GET['ta2'];
+	} else {
+		$ta2 = 0;
+	}	
 
 
 	try {
@@ -60,6 +71,9 @@
 		$mysqli->query("INSERT INTO temp3_data(temp, sensor_id) VALUES ('" . $temp3 . "', '" .$id_arduino. "')");
 		$mysqli->query("INSERT INTO temp4_data(temp, sensor_id) VALUES ('" . $temp4 . "', '" .$id_arduino. "')");
 		$mysqli->query("INSERT INTO temp5_data(temp, sensor_id) VALUES ('" . $temp5 . "', '" .$id_arduino. "')");
+		// Ambient Temperature
+		$mysqli->query("INSERT INTO ta1_data(temp, sensor_id) VALUES ('" . $ta1 . "', '" .$id_arduino. "')");
+		$mysqli->query("INSERT INTO ta2_data(temp, sensor_id) VALUES ('" . $ta2 . "', '" .$id_arduino. "')");
 	
 		// If we arrive here, it means that no exception was thrown
 		// i.e. no query has failed, and we can commit the transaction

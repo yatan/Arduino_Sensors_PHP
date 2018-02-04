@@ -47,6 +47,26 @@
 
 		echo '</div>';
 	}
+
+	// Reading from Ambient Temperature 1 and 2
+	for($i=1;$i<=2;$i++)
+	{
+		echo '<div style="float:left; padding-right:50px;"> Temperatura ambient '.$i.'<br>';
+
+		$sql = "SELECT data, temp, sensor_id FROM ta".$i."_data ORDER BY 1 DESC";
+		$result = $mysqli->query($sql);
+	
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				echo "Data: " . $row["data"]. " - Temperatura: " . $row["temp"]. " - Arduino: ".$row["sensor_id"]."<br>";
+			}
+		} else {
+			echo "0 results";
+		}
+
+		echo '</div>';
+	}
 	
 
 
