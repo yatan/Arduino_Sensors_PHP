@@ -7,7 +7,7 @@
 	<META NAME="keywords" CONTENT="arduino, sensors, spirulina">
 	<META NAME="description" CONTENT="Get data, process and visualize arduino sensors">
 	<title>Sensors</title>
-	<link rel="stylesheet" href="estil.css">
+	<link rel="stylesheet" href="css/estil.css">
 
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
