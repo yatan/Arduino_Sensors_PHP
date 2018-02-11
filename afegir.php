@@ -60,6 +60,52 @@
 		$ta2 = 0;
 	}	
 
+	// Reading Ambient Light LDR 1
+	if (isset($_GET['ldr1']) && is_numeric($_GET['ldr1'])) {
+		$ldr1 = $_GET['ldr1'];
+	} else {
+		$ldr1 = 0;
+	}	
+	// Reading Ambient Light LDR 2
+	if (isset($_GET['ldr2']) && is_numeric($_GET['ldr2'])) {
+		$ldr2 = $_GET['ldr2'];
+	} else {
+		$ldr2 = 0;
+	}	
+	// Reading Ambient Light LDR 3
+	if (isset($_GET['ldr3']) && is_numeric($_GET['ldr3'])) {
+		$ldr3 = $_GET['ldr3'];
+	} else {
+		$ldr3 = 0;
+	}	
+	// Reading Ambient Light LDR 4
+	if (isset($_GET['ldr4']) && is_numeric($_GET['ldr4'])) {
+		$ldr4 = $_GET['ldr4'];
+	} else {
+		$ldr4 = 0;
+	}	
+	
+	// Reading Laser Light LDR 1
+	if (isset($_GET['laser1']) && is_numeric($_GET['laser1'])) {
+		$laser1 = $_GET['laser1'];
+	} else {
+		$laser1 = 0;
+	}	
+	
+	// Reading Laser Light LDR 2
+	if (isset($_GET['laser2']) && is_numeric($_GET['laser2'])) {
+		$laser2 = $_GET['laser2'];
+	} else {
+		$laser2 = 0;
+	}	
+	
+	// Reading Laser Light LDR 3
+	if (isset($_GET['laser3']) && is_numeric($_GET['laser3'])) {
+		$laser3 = $_GET['laser3'];
+	} else {
+		$laser3 = 0;
+	}		
+
 
 	try {
 		// First of all, let's begin a transaction
@@ -74,6 +120,15 @@
 		// Ambient Temperature
 		$mysqli->query("INSERT INTO ta1_data(temp, sensor_id) VALUES ('" . $ta1 . "', '" .$id_arduino. "')");
 		$mysqli->query("INSERT INTO ta2_data(temp, sensor_id) VALUES ('" . $ta2 . "', '" .$id_arduino. "')");
+		// Ambient Light LDR
+		$mysqli->query("INSERT INTO lux1_data(temp, sensor_id) VALUES ('" . $ldr1 . "', '" .$id_arduino. "')");
+		$mysqli->query("INSERT INTO lux2_data(temp, sensor_id) VALUES ('" . $ldr2 . "', '" .$id_arduino. "')");	
+		$mysqli->query("INSERT INTO lux3_data(temp, sensor_id) VALUES ('" . $ldr3 . "', '" .$id_arduino. "')");		
+		$mysqli->query("INSERT INTO lux4_data(temp, sensor_id) VALUES ('" . $ldr4 . "', '" .$id_arduino. "')");		
+		// Laser Light LDR
+		$mysqli->query("INSERT INTO laser1_data(temp, sensor_id) VALUES ('" . $laser1 . "', '" .$id_arduino. "')");
+		$mysqli->query("INSERT INTO laser2_data(temp, sensor_id) VALUES ('" . $laser2 . "', '" .$id_arduino. "')");
+		$mysqli->query("INSERT INTO laser3_data(temp, sensor_id) VALUES ('" . $laser3 . "', '" .$id_arduino. "')");
 	
 		// If we arrive here, it means that no exception was thrown
 		// i.e. no query has failed, and we can commit the transaction

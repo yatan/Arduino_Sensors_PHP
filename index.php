@@ -119,7 +119,17 @@
 	for($i=1;$i<=4;$i++)
 	{
 		echo '<div id="lux-'.$i.'">';
-
+		$sql = "SELECT data, temp, sensor_id FROM lux".$i."_data ORDER BY 1 DESC";
+		$result = $mysqli->query($sql);
+	
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				echo "Data: " . $row["data"]. " - Lux: " . $row["temp"]. " - Arduino: ".$row["sensor_id"]."<br>";
+			}
+		} else {
+			echo "0 results";
+		}
 		echo '</div>';
 	}
 
@@ -127,7 +137,17 @@
 	for($i=1;$i<=3;$i++)
 	{
 		echo '<div id="laser-'.$i.'">';
-
+		$sql = "SELECT data, temp, sensor_id FROM laser".$i."_data ORDER BY 1 DESC";
+		$result = $mysqli->query($sql);
+	
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while($row = $result->fetch_assoc()) {
+				echo "Data: " . $row["data"]. " - Lux: " . $row["temp"]. " - Arduino: ".$row["sensor_id"]."<br>";
+			}
+		} else {
+			echo "0 results";
+		}
 		echo '</div>';
 	}
 
